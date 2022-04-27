@@ -1,0 +1,30 @@
+#系统cuda11.6 对应
+#虚拟环境 cuda11.1
+
+conda create -n open-mmlab python=3.8 -y
+
+conda activate open-mmlab
+
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
+
+pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html
+
+pip install mmdet
+
+pip install mmsegmentation
+
+python3 setup.py develop
+
+
+python
+
+>>> import torch
+>>> torch.cuda.is_available()
+True
+>>> import mmcv
+>>> import mmdet
+>>> import mmdet3d
+
+
+
+python demo/pcd_demo.py demo/data/kitti/kitti_000008.bin configs/second/hv_second_secfpn_6x8_80e_kitti-3d-car.py data/hv_second_secfpn_6x8_80e_kitti-3d-car_20200620_230238-393f000c.pth
